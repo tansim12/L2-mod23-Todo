@@ -18,7 +18,6 @@ const TodoFrom = () => {
     dispatch({type:"addTodo", payload:todoData})
   };
 
-  console.log(state);
   
   return (
     <div>

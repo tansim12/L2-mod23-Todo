@@ -12,7 +12,7 @@ interface ITodo {
 
 interface IAction {
   type: string;
-  payload: ITodo;
+  payload: ITodo |string;
 }
 const initialState: ITodo[] = [];
 
@@ -20,6 +20,12 @@ const reducer = (currentState: ITodo[], action: IAction) => {
   switch (action.type) {
     case "addTodo":
       return [...currentState, action.payload];
+    case "todoComplete":
+      return currentState?.map((item) =>
+        item?.id === action.payload
+          ? { ...item, isCompleted: !item?.isCompleted }
+          : item
+      );
 
     default:
       return currentState;
